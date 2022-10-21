@@ -38,7 +38,7 @@ You can use the following commands:
 
 ${cp.red.paint('1- Automatic Translation')}
 ------------------------
-${cp.yellow.paint('jsontrans translate /myfile.json pt en')}
+${cp.yellow.paint('jsontrans translate ./myfile.json pt en')}
 
 Translate myfile.json from portuguese (pt) to english (en) using Google Translator. 
 If the  file name is equal  to the language  ISO code then the resulting  file will 
@@ -48,7 +48,7 @@ the file myfile-en.json will be created.
 
 ${cp.red.paint('2- Prepare File For Manual Translation')}
 --------------------------------------
-${cp.yellow.paint('jsontrans prepare /myfile.json pt en')}
+${cp.yellow.paint('jsontrans prepare ./myfile.json pt en')}
 
 Will create myfile.tsv from myfile.json. The first language code is the one the JSON
 file is in and the second is the target language of the translation.  This file will 
@@ -59,7 +59,7 @@ fill it in and give back to be transformed.
 
  ${cp.red.paint('3- Transforms a Translated File')}
 -------------------------------
-${cp.yellow.paint('jsontrans transform /myfile.tsv /myfile.json newfilename')}
+${cp.yellow.paint('jsontrans transform ./myfile.tsv /myfile.json newfilename')}
 
 Turns the original JSON file  (used to generate the TSV with command 2 and passed as
 myfile.json)  into a new JSON file with the translation in place.  The name for this 
