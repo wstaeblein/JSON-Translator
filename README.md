@@ -86,4 +86,3 @@ You'll need the original file to create a new JSON file with the translated text
 
 ## License
 
-[MIT License](https://andreasonny.mit-license.org/2019) © Andrea SonnY
