@@ -1,0 +1,18 @@
+{
+    "name": "json-translator",
+    "version": "0.1.6",
+    "description": "Translate any JSON file",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Walter Staeblein",
+    "license": "ISC",
+    "dependencies": {
+        "@vitalets/google-translate-api": "^8.0.0",
+        "chroma-palette": "^1.2.2"
+    },
+    "bin": {
+        "jsontrans": "./index.js"
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "menu": {
+        "resources": "Recursos",
+        "downloadlink": "Download",
+        "donate": "Doação",
+        "contactlink": "Contato"
+    },
+    "overtitle": "Totalmente gratuito!",
+    "title": "Otimizador e Redimensionador de Imagens",
+    "hero": { 
+        "first" : "Aplicativo para facilmente reduzir o tamanho e até as dimensões de imagens nos formatos JPG, PNG e WEBP. Faz uso da API do serviço ", 
+        "link": "tinypng.com", 
+        "last": "."
+    },
+    "herocards": [
+        { "img": "practical.png", "text": "Mais Praticidade" },
+        { "img": "speed.png", "text": "Mais Velocidade" },
+        { "img": "productivity.png", "text": "Mais Produtividade" }
+    ],
+    "featurestitle": "O Que o App Oferece",
+    "featurelist": [
+        { "title": "Interface simples e direta", "icon": "drag", "text": "Basta clicar e arrastar um ou mais arquivos de imagem sobre a janela do programa para iniciar o processo." },
+        { "title": "Disponível várias línguas", "icon": "globe", "text": "Atualmente a interface está disponível em português, inglês e espanhol." },
+        { "title": "Controle sobre o arquivo de saída", "icon": "file", "text": "Você pode escolher sobrescrever o arquivo, criar uma pasta para o resultado, criar um novo arquivo ou ainda fazer um backup do original." },
+        { "title": "Redimensionamento de imagens", "icon": "redim", "text": "Diminua proporcionalmente, diminua para caber ou cobrir dimensões informadas ou ainda crie miniaturas." },
+        { "title": "Gerência de metadados das imagens", "icon": "meta", "text": "Aqui você pode escolher remover ou preservar o copyright, a geolocalização e a data das imagens." },
+        { "title": "Controle sobre o uso", "icon": "dash", "text": "Você sabe a todo momento quantas compressões fez no mês e quantas imagens estão ou acabaram de ser processadas." }
+    ],
+    "featuresobs": {
+        "first": "Para usar esse aplicativo é necessário a criação de uma conta no site ",
+        "link": "tinypng.com",
+        "last": ". Esta conta é totalmente gratuita até 500 compressões de imagens por mês."
+    },
+    "downloadstitle": "Escolha o seu download",
+    "soon": "Em Breve!!",
+    "donationtitle": "Faça uma Doação",
+    "donationtext1": "Este app é uma banda de um homem só e não é fácil criar e manter um pandinha desses.<br>Conto com sua ajuda para deixar o Panda Cub sempre forte, saudável e bem alimentado!",
+    "donationtext2": "Use o QR Code ou o botão de doação.<br>Qualquer valor é bem vindo! Desde já obrigado pelo apoio.",
+    "donatebtn": "Fazer Doação",
+    "contacttitle": "Contato",
+    "contacttext": {
+        "first": "Use o formulário abaixo para qualquer contato. Se preferir, ",
+        "link": "clique aqui",
+        "last": " para mandar um email do seu programa preferido."
+    },
+    "placeholders": { "name": "Nome", "subject": "Assunto", "text": "Texto" },
+    "sendmailbtn": "Enviar Mensagem",
+    "syn": {
+        "first": "Feito com ",
+        "second": " por "
+    }            
+}

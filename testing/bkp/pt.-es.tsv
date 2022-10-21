@@ -1,0 +1,54 @@
+Identificador	pt	es
+menu.resources	Recursos	Recursos
+menu.downloadlink	Download	Descargar
+menu.donate	Doação	Donación
+menu.contactlink	Contato	Contacto
+overtitle	Totalmente gratuito!	¡Totalmente Gratis!
+title	Otimizador e Redimensionador de Imagens	Optimizador y Redimensionador de Imágenes
+hero.first	"Aplicativo para facilmente reduzir o tamanho e até as dimensões de imagens nos formatos JPG, PNG e WEBP. Faz uso da API do serviço "	Aplicación para reducir fácilmente el tamaño e inclusive las dimensiones de imágenes en formatos JPG, PNG y WEBP. Hace uso de la API del servicio
+hero.link	tinypng.com	tinypng.com
+hero.last	.	.
+herocards.0.img	practical.png	practical.png
+herocards.0.text	Mais Praticidade	Más Practicidad
+herocards.1.img	speed.png	speed.png
+herocards.1.text	Mais Velocidade	Más Velocidad
+herocards.2.img	productivity.png	productivity.png
+herocards.2.text	Mais Produtividade	Más Productividad
+featurestitle	O Que o App Oferece	Qué ofrece la aplicación
+featurelist.0.title	Interface simples e direta	Interfaz simple y sencilla
+featurelist.0.icon	drag	drag
+featurelist.0.text	Basta clicar e arrastar um ou mais arquivos de imagem sobre a janela do programa para iniciar o processo.	Simplemente haga clic y arrastre uno o más archivos de imagen sobre la ventana del programa para iniciar el proceso.
+featurelist.1.title	Disponível várias línguas	Disponible en varios idiomas
+featurelist.1.icon	globe	globe
+featurelist.1.text	Atualmente a interface está disponível em português, inglês e espanhol.	Actualmente la interfaz está disponible en portugués, inglés y español.
+featurelist.2.title	Controle sobre o arquivo de saída	Control sobre el archivo de salida
+featurelist.2.icon	file	file
+featurelist.2.text	Você pode escolher sobrescrever o arquivo, criar uma pasta para o resultado, criar um novo arquivo ou ainda fazer um backup do original.	Puede optar por sobrescribir el archivo, crear una carpeta para el resultado, crear un nuevo archivo o incluso hacer una copia de seguridad del original.
+featurelist.3.title	Redimensionamento de imagens	Cambiar el tamaño de las imágenes
+featurelist.3.icon	redim	redim
+featurelist.3.text	Diminua proporcionalmente, diminua para caber ou cobrir dimensões informadas ou ainda crie miniaturas.	Reduzca la escala proporcionalmente, reduzca la escala para ajustarse o cubrir dimensiones dadas, o cree miniaturas.
+featurelist.4.title	Gerência de metadados das imagens	Gestión de metadatos de imágenes
+featurelist.4.icon	meta	meta
+featurelist.4.text	Aqui você pode escolher remover ou preservar o copyright, a geolocalização e a data das imagens.	Aquí puede optar por eliminar o conservar los derechos de autor, la geolocalización y la fecha de las imágenes.
+featurelist.5.title	Controle sobre o uso	Control sobre el uso
+featurelist.5.icon	dash	dash
+featurelist.5.text	Você sabe a todo momento quantas compressões fez no mês e quantas imagens estão ou acabaram de ser processadas.	Sabrás en todo momento cuántas compresiones has hecho en el mes y cuántas imágenes están o acaban de procesar.
+featuresobs.first	"Para usar esse aplicativo é necessário a criação de uma conta no site "	Para utilizar esta aplicación es necesario crear una cuenta en el sitio web.
+featuresobs.link	tinypng.com	tinypng.com
+featuresobs.last	. Esta conta é totalmente gratuita até 500 compressões de imagens por mês.	. Esta cuenta es completamente gratuita para hasta 500 compresiones de imágenes por mes.
+downloadstitle	Escolha o seu download	Elige tu descarga
+soon	Em Breve!!	¡¡Pronto!!
+donationtitle	Faça uma Doação	Haz una donación
+donationtext1	Este app é uma banda de um homem só e não é fácil criar e manter um pandinha desses.<br>Conto com sua ajuda para deixar o Panda Cub sempre forte, saudável e bem alimentado!	Esta aplicación es una banda de un solo hombre y no es fácil crear y mantener una pandita así.<br>¡Cuento con su ayuda para mantener al Panda Cub siempre fuerte, saludable y bien alimentado!
+donationtext2	Use o QR Code ou o botão de doação.<br>Qualquer valor é bem vindo! Desde já obrigado pelo apoio.	Use el código QR o el botón de donar.<br>¡Cualquier cantidad es bienvenida! Gracias de antemano por su apoyo.
+donatebtn	Fazer Doação	Haz una donación
+contacttitle	Contato	Contacto
+contacttext.first	"Use o formulário abaixo para qualquer contato. Se preferir, "	"Utilice el siguiente formulario para cualquier contacto. Si lo prefieres, "
+contacttext.link	clique aqui	haz clic aquí
+contacttext.last	" para mandar um email do seu programa preferido."	para enviar un correo electrónico de su programa favorito.
+placeholders.name	Nome	Nombre
+placeholders.subject	Assunto	Asunto
+placeholders.text	Texto	Texto
+sendmailbtn	Enviar Mensagem	Enviar Mensaje
+syn.first	"Feito com "	"Hecho con "
+syn.second	" por "	" por "
