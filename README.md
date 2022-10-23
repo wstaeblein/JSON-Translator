@@ -1,22 +1,26 @@
-# JSON Translator
+# JSON Translator Beta
 
-A CLI app able to automatically translate a JSON file into any language or prepare a JSON file to be translated by anyone into any language. Can be very useful if you need to generate JSON files with different translations from one with your project's default language.
+A CLI app able to automatically translate a JSON file into any language or prepare a JSON file to be translated by a human translator into any language. Can be very useful if you need to generate JSON files with different translations from one with your project's default language.
 
-
+  
+  
+  
 ## Features
 
-- Can handle any JSON file as long as there are no functions types
-- Detects numbers, files and urls and skip their translation
-- Help included in the CLI
+- Can handle any JSON file as long as there are no functions types.
+- Detects numbers, paths, filenames and urls and skip their translation.
+- Help included in the CLI.
 - Uses TSV (TAB separated file) files for the manual translation. These files are easily read by any spreadsheet application.
+- Can have fields that preserve their values and don't get translated
 
-
+  
+  
+  
 ## Prerequisites
 
 This project requires NodeJS (version 8 or later) and NPM.
 [Node](http://nodejs.org/) and [NPM](https://npmjs.org/) are really easy to install.
-To make sure you have them available on your machine,
-try running the following command.
+To make sure you have them available on your machine, try running the following command.
 
 ```sh
 $ npm -v && node -v
@@ -24,35 +28,45 @@ $ npm -v && node -v
 v8.16.0
 ```
 
+  
+  
+  
 ## Installation
 
 ```sh
 $ npm install json-translator -g
 ```
 
+  
+  
+  
+## Usage and API
 
-## Usage
-
-The app has 3 commands, plus you can execute it with no arguments or with --help to get on screen help similar to the following:
-
+The app has 3 commands, plus you can execute it with no arguments or with --help to get on screen help. The commands and their arguments are explained below
+  
+  
 ### 1- TRANSLATE
 
-This command performs the automatic translation using Google Translator. The idea here is to get a fast translation without the need for a translator. It is a good idea to revise the translation though.
+This command performs the automatic translation using Google Translator. The idea here is to get a fast translation without the need for a translator. It is a good idea to either revise the translation or have someone revise for you. That's why you can your translation saved as a JSON or as a TSV.
 
-You'll need to pass 4 arguments as shown below, none are optional.
+You'll need to pass 5 arguments as shown below, none are optional.
 
 ```sh
-$ jsontrans translate ./myfile-pt.json pt en
+$ jsontrans translate ./myfile-pt.json pt en json
 ```
-The first argument is the command translate, the second is a path that points to a JSON file with your original translation. From this file the translate command will generate a new file with the same structure as the one passed but with the contents translated into a language of choice.
+The first argument is the command translate, the second is a path that points to a JSON file with it's contents in your original language. From this file the translate command will generate a new file with the same structure as the one passed but with the contents translated into your language of choice.
 
-The third argument is the ISO language code of the file passed in the previous argument and the forth is the language you wish your file translated into.
+The third argument is the ISO language code of the file passed in the previous argument and the forth is the language you wish your file translated into. Last but not least, the fifth argument is the output format. It can be either JSON or TSV. 
+
+If JSON is chosen, a JSON file with the translation is created. If TSV is chosen, a TSV file with columns for and identificator (internal use), the original language and the target language are created. This way you can provide a translator with a file that is already translated and need only a revision and possible corrections, making his/her job much easier.
 
 The example above will translate myfile-pt.json from portuguese to english. That will generate a file in the same folder called myfile-pt-en.json. Should the name of the file be equal to it's language code, the resulting file will follow. That means that if we had a file called pt.json instead, the translated file would be en.json.
 
+JSON keys that start with a double underscore '__' will not be translated. Instead of the translated text the field will contain the original text.
 
-
-
+Fields that contain numbers dont get translated.
+  
+  
 ### 2- PREPARE
 
 This command prepares a JSON file to be manually translated by a human or system. You'll need to pass 4 arguments as shown below, none are optional.
@@ -73,16 +87,38 @@ PLACE EXAMPLE OF THE TSV FILE
 
 The idea is to give this file to the translator and instruct him to type the translations in the third column. Needless to say that if someone tampers 
 
-
-
 You'll need the original file to create a new JSON file with the translated text. That is done in the next command.
+  
+  
+### 3- TRANSFORM
 
+This command is used to transform a TSV file that has already been translated into a JSON file with the same structure as the file used to generate the TSV in the first place and the translated text. The TSV file must have been generated by this app.
 
+```sh
+$ jsontrans transform ./myfile.tsv /myfile.json newfilename
+```
+
+The 4 arguments are as follows. The first is the command transform, the second is the path to the TSV file, the third is the path to the original JSON file (the one used to create the TSV file for translation) and the last is the filename for the json file to be created.
+  
+  
+### Observations
+
+- The TSV extension indicates tab separated files, much like CSVs but instead of commas or semicolons TABs are used to separate cells.
+- Existing files will be overwritten without warning.
+- The TSV files generated by this app must not be changed. The translator must be instructed to make changes only to the third column with the appropriate translations and nothing else.
+- The TSV files created by this app set the first line as a header. The first column is the Identificator, the second the original language and the third the target language.
+- Transform command expects the TSV file's first line to be a header and will ignored it.
+
+  
+  
+  
 ## Author
 
 **Walter Staeblein** 
 
-
-
+  
+  
+  
 ## License
 
+ This software is made available under the [Apache Licence 2.0](http://www.apache.org/licenses/LICENSE-2.0).

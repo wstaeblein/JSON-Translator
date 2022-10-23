@@ -1,17 +1,25 @@
 {
-    "name": "json-translator",
-    "version": "0.1.6",
-    "description": "Translate any JSON file",
+    "name": "@wstaeblein/json-translator",
+    "version": "0.4.7",
+    "description": "Prepare for or translate any JSON file either with Google or human Translator",
+    "keywords": ["translator", "json", "translation", "language", "international"],
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Walter Staeblein",
-    "license": "ISC",
+    "license": {
+        "type": "Apache-2.0",
+        "url": "https://opensource.org/licenses/apache2.0.php"
+    },
     "dependencies": {
         "@vitalets/google-translate-api": "^8.0.0",
         "chroma-palette": "^1.2.2"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wstaeblein/JSON-Translator"
+      },    
     "bin": {
         "jsontrans": "./index.js"
     }
