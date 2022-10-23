@@ -7,7 +7,7 @@ A CLI app able to automatically translate a JSON file into any language or prepa
   
 ## Features
 
-- Can handle any JSON file as long as there are no functions types.
+- Can handle any JSON file, doesn't matter how deep it's hierarchy goes.
 - Detects numbers, paths, filenames and urls and skip their translation.
 - Help included in the CLI.
 - Uses TSV (TAB separated file) files for the manual translation. These files are easily read by any spreadsheet application.
