@@ -34,7 +34,7 @@ v8.16.0
 ## Installation
 
 ```sh
-$ npm install @wstaeblein/json-translator -g
+$ npm install -g @wstaeblein/json-translator
 ```
 
   
