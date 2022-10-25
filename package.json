@@ -1,6 +1,6 @@
 {
     "name": "@wstaeblein/json-translator",
-    "version": "0.4.8",
+    "version": "0.4.9",
     "description": "Prepare for or translate any JSON file either with Google or human Translator",
     "keywords": [
         "translator",
