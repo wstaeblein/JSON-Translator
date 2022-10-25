@@ -2,10 +2,18 @@
     "name": "@wstaeblein/json-translator",
     "version": "0.4.8",
     "description": "Prepare for or translate any JSON file either with Google or human Translator",
-    "keywords": ["translator", "json", "translation", "language", "international"],
+    "keywords": [
+        "translator",
+        "json",
+        "translation",
+        "language",
+        "international",
+        "cli",
+        "utility"
+    ],
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"No test specified\""
     },
     "author": "Walter Staeblein",
     "license": {
@@ -19,7 +27,7 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/wstaeblein/JSON-Translator"
-      },    
+    },
     "bin": {
         "jsontrans": "./index.js"
     }

@@ -61,6 +61,7 @@
                             fs.writeFileSync(tsvOutPath, newTSV, { encoding:'utf8' });          // Saves TSV
                     }
                 } catch (error) {
+                    log(error);
                     endThis('An unexpected error has occurred!');
                 }
                 break;
