@@ -1,0 +1,38 @@
+{
+    "title": "Aplicación ACME",
+    "desc": "Esta aplicación hace muchas cosas buenas para muchas personas.",
+    "mainbtntext": "Descargar",
+    "form": {
+        "waitmsg": "Espere mientras enviemos su formulario",
+        "okmsg": "Formulario enviado con éxito",
+        "errmsg": "¡Se ha producido un error!",
+        "placeholders": {
+            "name": "Nombre",
+            "email": "Correo electrónico",
+            "msg": "Mensaje"
+        }
+    },
+    "bullets": [
+        {
+            "title": "Interfaz simple y directa",
+            "__icon": "drag",
+            "text": "Simplemente arrastre uno o más archivos sobre la pantalla para iniciar el proceso."
+        },
+        {
+            "title": "Disponible en varios idiomas",
+            "__icon": "globe",
+            "text": "Actualmente, la interfaz está disponible en inglés, portugués y español."
+        },
+        {
+            "title": "Control sobre el proceso",
+            "__icon": "file",
+            "text": "Puede elegir qué hacer a lo largo del proceso."
+        },
+        {
+            "title": "Control sobre el uso",
+            "__icon": "dash",
+            "text": "Sabes en todo momento cuántas veces se ha utilizado la aplicación."
+        }
+    ],
+    "wait": "Esperar"
+}

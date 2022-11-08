@@ -16,7 +16,7 @@
         "test": "echo \"No test specified\""
     },
     "author": "Walter Staeblein",
-    "license": {
+    "licence": {
         "type": "Apache-2.0",
         "url": "https://opensource.org/licenses/apache2.0.php"
     },
