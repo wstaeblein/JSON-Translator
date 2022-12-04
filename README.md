@@ -42,23 +42,28 @@ $ npm install -g @wstaeblein/json-translator
   
 ## Usage and API
 
-The app has 3 commands, plus you can execute it with no arguments or with --help to get on screen help. The commands and their arguments are explained below
+The app has 4 commands, plus you can execute it with no arguments or with --help to get on screen help. The commands and their arguments are explained below
   
   
 ### 1- TRANSLATE
 
 This command performs the automatic translation using Google Translator. The idea here is to get a fast translation without the need for a translator. It is a good idea to either revise the translation or have someone revise for you. That's why you can have your translation saved as a JSON or as a TSV.
 
+You can also translate straight from the clipboard. Just copy ta valid JSON structure to the clipboard and run the translate command. The result will be copied to the clipboard when ready.
+
 You'll need to pass 5 arguments as shown below, none are optional.
 
 ```sh
 $ jsontrans translate ./myfile-pt.json pt en json
+$ jsontrans translate clip pt en json
 ```
-The first argument is the command translate, the second is a path that points to a JSON file with it's contents in your original language. From this file the translate command will generate a new file with the translation.
+The first argument is the command translate, the second is either a path that points to a JSON file with it's contents in your original language, or the text clip, in which case the contents of the clipboard will be used instead of a file. From this content the translate command will generate a new file or set the clipboard with the result of the translation. 
 
-The third argument is the ISO code of the language used in file passed in the previous argument and the forth is the language you wish your file translated into. Last but not least, the fifth argument is the output format. It can be either json or tsv. 
+The third argument is the ISO code of the language used in file passed in the previous argument and the forth is the language you wish your file translated into. [Click here](https://cloud.google.com/translate/docs/languages) to see a list of supported languages. Last but not least, the fifth argument is the output format. It can be either json or tsv. 
 
 If JSON format is chosen, a JSON file with the translation is created. This file will have same structure as the one passed but with the contents translated into your language of choice. If TSV format is chosen, a TSV file with columns for and ID (internal use), the original language and the target language are created. This way you can provide a translator with a file that is already translated and need only a revision and possible corrections, making his/her job much faster and easier, perhaps even cheaper.
+
+When using clipboard translation the last argument has no effect. The clipboard will always accept a JSON structure to be translated and will be set with the same structure after having it's content translated.
 
 ![TSV file with translation](./imgs/tsv-ready.png)
 
@@ -107,8 +112,19 @@ $ jsontrans transform ./myfile.tsv /myfile.json newfilename
 The 4 arguments are as follows. The first is the command transform, the second is the path to the TSV file, the third is the path to the original JSON file (the one used to create the TSV file for translation) and the last is the filename for the json file to be created.
   
   
+### 4- TRIM
+
+This command just removes double underscores from a JSON file's keys. The idea being: You create a file with the original language's translation, usually your language or english. In this file you shall have keys that may not be for translation. 
+
+```sh
+$ jsontrans trim ./myfile.json
+```
+
+  
+  
 ### Observations
 
+- In the [examples folder](/examples) you'll find a [JSON file in english](/examples/en.json), it's [translation into spanish](/examples/es.json) and a [TSV file](/examples/en-es.tsv) ready to be translated from english to spanish. All these files were generated using this application. The first was the original file used to produce the other 2 with the `translate` and `prepare` commands respectively.
 - The TSV extension indicates tab separated files, much like CSVs but instead of commas or semicolons TABs are used to separate cells.
 - Existing files will be overwritten without warning.
 - The translator must be instructed to make changes only to the third column with the appropriate translations and nothing else.

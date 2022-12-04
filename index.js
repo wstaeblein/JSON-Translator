@@ -5,7 +5,6 @@
 //
 // Prepare for and Translates JSON files
 // *************************************
-
 (async function() {
 
     var googleTrans = require('@vitalets/google-translate-api');
@@ -14,11 +13,12 @@
     var version = require('./package.json').version || '';
     var os = require('os');
     var cp = require('chroma-palette');
+    var clipboard = require('node-clipboardy');
     var args = process.argv.slice(2);
     var log = console.log;
 
 
-    if (!args.length || args[0].toLowerCase() == '--help' || args[0].toLowerCase() == '-h') { 
+    if (!args.length || args[0].toLowerCase() == '--help' || args[0].toLowerCase() == 'help' || args[0].toLowerCase() == '-h') { 
         help();
     } else {
         let op = args[0].toLowerCase();
@@ -26,10 +26,32 @@
         let jsonfile = '';
         let currlang = '', outlang = '';
         let startTime = new Date().getTime();
+        let clipBoardFlag = false;
 
         switch (op) {
+            case 'trim':
+                if (args.length != 2) { 
+                    endThis('Arguments are wrong or in the wrong number'); 
+                }       
+                
+                try {
+                    let fn = args[1];
+                    let pth = makePath(fn);
+                    jsonfile = fs.readFileSync(pth, { encoding:'utf8' }); 
+                    let newJSON = JSON.parse(jsonfile, trimUnderscores);   
+                    
+                    fs.writeFileSync(pth, JSON.stringify(newJSON, null, 4), { encoding:'utf8' });
+
+                } catch (error) {
+                    log(error);
+                    endThis('An unexpected error has occurred!');                    
+                }
+                break;
+
             case 'translate':
-                if (args.length != 5) { 
+                let isclip = args[1].toLowerCase() == 'clip' || args[1].toLowerCase() == 'clipboard';
+
+                if (!(([4, 5].includes(args.length) && isclip) || args.length == 5)) { 
                     endThis('Arguments are wrong or in the wrong number'); 
                 }
                 let format = args[4].toLowerCase();
@@ -43,22 +65,44 @@
                 try {
                     let fn = args[1];
                     let pth = makePath(fn);
-                    jsonfile = JSON.parse(fs.readFileSync(pth, { encoding:'utf8' })); 
-                    let newJSON = await translate(jsonfile, currlang, outlang);
+                    if (isclip) {
+                        try {
+                            let cbtext = clipboard.readSync();
+                            if (!cbtext) { 
+                                endThis('Clipboard empty'); 
+                            } else {
+                                jsonfile = JSON.parse(cbtext);                                    
+                            }
+                        } catch (error) {
+                            log(error);
+                            endThis('Clipboard content could not be read and/or formatted'); 
+                        }
+                        clipBoardFlag = true;
+                    } else {
+                        jsonfile = JSON.parse(fs.readFileSync(pth, { encoding:'utf8' })); 
+                    }
 
-                    let parsePth = path.parse(pth);
-                    let newpath = path.join(parsePth.dir, (parsePth.name.toLowerCase() == currlang ? outlang : parsePth.name + '-' + outlang));
+                    let newJSONText = JSON.stringify(await translate(jsonfile, currlang, outlang));
+                    let newJSON = JSON.parse(newJSONText, trimUnderscores);
 
-                    switch (format) {
-                        case 'json':
-                            fs.writeFileSync(newpath + '.json', JSON.stringify(newJSON, null, 4), { encoding:'utf8' });
-                            break;
+                    if (clipBoardFlag) {
+                        clipboard.writeSync(JSON.stringify(newJSON, null, 4));
+                        log(`\n${cp.yellow.paint('MESSAGE: ')} Result copied to clipboard!`);
+                    } else {                       
+                        let parsePth = path.parse(pth);
+                        let newpath = path.join(parsePth.dir, (parsePth.name.toLowerCase() == currlang ? outlang : parsePth.name + '-' + outlang));
 
-                        case 'tsv':
-                            let emptyTSV = prepare(jsonfile, currlang, outlang);                // Creates TSV ready to be translated
-                            let tsvOutPath = newpath + '.tsv';                                  // Creates path to save TSV
-                            let newTSV = fillTSV(emptyTSV, newJSON);                            // Translate TSV
-                            fs.writeFileSync(tsvOutPath, newTSV, { encoding:'utf8' });          // Saves TSV
+                        switch (format) {
+                            case 'json':
+                                fs.writeFileSync(newpath + '.json', JSON.stringify(newJSON, null, 4), { encoding:'utf8' });
+                                break;
+
+                            case 'tsv':
+                                let emptyTSV = prepare(jsonfile, currlang, outlang);                // Creates TSV ready to be translated
+                                let tsvOutPath = newpath + '.tsv';                                  // Creates path to save TSV
+                                let newTSV = fillTSV(emptyTSV, newJSON);                            // Translate TSV
+                                fs.writeFileSync(tsvOutPath, newTSV, { encoding:'utf8' });          // Saves TSV
+                        }
                     }
                 } catch (error) {
                     log(error);
@@ -210,6 +254,14 @@
     // ------------------------------------------------
     function prepare(json, lang, outlang) {
         let arr = props2Array(json, lang, outlang);
+        let index = arr.length;
+
+        while (index--) {
+            let dotnot = arr[index].split('\t').shift();
+            if (dotnot.includes('.__') || dotnot.substr(0, 2) == '__') {
+                arr.splice(index, 1);
+            }
+        }
         let resp = arr.join(os.EOL);
         return resp;
     }
@@ -225,8 +277,9 @@
             let lineArr = tsv[i].split('\t');
             
             if (lineArr.length >= 3) {
-                let dots = lineArr[0], value = lineArr[2];
-                dotNotation(json, dots, value);
+                let dots = lineArr[0];
+                let value = lineArr[2];
+                if (value) { dotNotation(json, dots, value); }
             }
         }
         return json;
@@ -256,7 +309,7 @@
     // ----------------------------------------------------------------
     function dotNotation(obj, dotArr, value) {
         if (typeof dotArr == 'string') {
-            // Tenta de novo com is como array
+            // Tenta de novo com dotArr como array
             return dotNotation(obj, dotArr.split('.'), value);
 
         } else if (dotArr.length == 1 && value !== undefined) {
@@ -266,10 +319,14 @@
                 return obj[dotArr[0]] = value;
             } else {
                 // Se já for um array, acrescenta o item, senão cria o array com o item
-                if (Array.isArray(obj)) { obj[+dotArr[0]] = value; } else { obj = [value]; }
+                if (Array.isArray(obj)) { 
+                    obj[+dotArr[0]] = value; 
+                } else { 
+                    obj = [value]; 
+                }
             }
         } else if (dotArr.length==0) {
-            // Se is for vazio, retorna o objeto
+            // Se dotArr for vazio, retorna o objeto
             return obj;
         } else {
             // Gira a roda
@@ -283,7 +340,7 @@
     // --------------------------------------------------------------------------------------
     // Returns an array with the dotnotation of each property of the object passed in obj Ex:
     // obj = { a: { b: { c: 'hello' } }}
-    // Retorns:
+    // Returns:
     // a.b.c [TAB] hello [TAB]
     // With the following first line: 'ID' [TAB] originalLang code [TAB] targetLang code
     // --------------------------------------------------------------------------------------
@@ -332,6 +389,19 @@
         });
     }
 
+
+    // ----------------------------------------------------
+    // Remove leading underscores from a JSON property name
+    // ----------------------------------------------------
+    function trimUnderscores(key, value) {
+        if (key.substr(0, 2) == '__') {
+            this[key.slice(2)] = value;
+            return;
+        } else {
+            return value;
+        }
+    }
+
     // ----------------------
     // Provides onscreen help
     // ----------------------
@@ -345,8 +415,8 @@ ${cp.red.paint('(_|  _) \\_/ | \\|    |  | \\ | | | \\|  _) |_  | |  |  \\ / | \
 ${cp.yellow.paint('by Walter Staeblein  v. ' + version)}
 ===========================================================
 
-This app can translate almost any JSON file or prepare a JSON file for translation as a TSV file.
-You can use the following commands:
+This app can translate almost any JSON file or prepare a JSON file  for translation 
+as a TSV file. You can use the following commands:
 
 ${cp.red.paint('1- Automatic Translation')}
 ------------------------
@@ -380,22 +450,17 @@ myfile.json)  into a new JSON file with the translation in place.  The name for 
 new file is passed in newfilename and it's structure will be the same as myfile.json
 but the values will be replaced with the ones from myfile.tsv.
 
-------------------------------------------------------------------------------------
 
-${cp.green.paint('Observations:')}
-=============
+${cp.red.paint('4- Trims the original JSON file of it\'s double underscores')}
+-----------------------------------------------------------
+${cp.yellow.paint('jsontrans trim ./myfile.json')}
 
-- The TSV extension indicates tab separated files, much like CSVs but instead of
-    commas or semicolons TABs are used to separate cells.
+Trims the original JSON file,  used to generate the TSV with command 2 and passed as
+myfile.json, of it's double underscores in key names. When you prepend 2 underscores
+to a key name, it's value won't be translated. This command is to remove those extra
+characters from the original file.
 
-- Existing files will be overwritten without warning.
-
-- The tsv files generated by this app must not be changed. The translator should
-    only fill the third column with the appropriate translations and nothing else.
-
-- Transform command supposes TSV file's first line is a header and will be ignored.
-
-        `);
+`);
         process.exit(0);        
     }
 

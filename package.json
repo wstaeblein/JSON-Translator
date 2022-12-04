@@ -1,6 +1,6 @@
 {
     "name": "@wstaeblein/json-translator",
-    "version": "0.4.9",
+    "version": "0.7.2",
     "description": "Prepare for or translate any JSON file either with Google or human Translator",
     "keywords": [
         "translator",
@@ -22,7 +22,8 @@
     },
     "dependencies": {
         "@vitalets/google-translate-api": "^8.0.0",
-        "chroma-palette": "^1.2.2"
+        "chroma-palette": "^1.2.2",
+        "node-clipboardy": "^1.0.3"
     },
     "repository": {
         "type": "git",

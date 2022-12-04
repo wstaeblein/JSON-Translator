@@ -15,23 +15,23 @@
     "bullets": [
         {
             "title": "Interfaz simple y directa",
-            "__icon": "drag",
-            "text": "Simplemente arrastre uno o más archivos sobre la pantalla para iniciar el proceso."
+            "text": "Simplemente arrastre uno o más archivos sobre la pantalla para iniciar el proceso.",
+            "icon": "drag"
         },
         {
             "title": "Disponible en varios idiomas",
-            "__icon": "globe",
-            "text": "Actualmente, la interfaz está disponible en inglés, portugués y español."
+            "text": "Actualmente, la interfaz está disponible en inglés, portugués y español.",
+            "icon": "globe"
         },
         {
             "title": "Control sobre el proceso",
-            "__icon": "file",
-            "text": "Puede elegir qué hacer a lo largo del proceso."
+            "text": "Puede elegir qué hacer a lo largo del proceso.",
+            "icon": "file"
         },
         {
             "title": "Control sobre el uso",
-            "__icon": "dash",
-            "text": "Sabes en todo momento cuántas veces se ha utilizado la aplicación."
+            "text": "Sabes en todo momento cuántas veces se ha utilizado la aplicación.",
+            "icon": "dash"
         }
     ],
     "wait": "Esperar"

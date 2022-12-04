@@ -10,14 +10,29 @@
             "name": "Name",
             "email": "Email",
             "msg": "Message"
-        }  
+        }
     },
     "bullets": [
-        { "title": "Simple and straightforward interface", "__icon": "drag", "text": "Just drag one or more files over the screen to start the process." },
-        { "title": "Available in multiple languages", "__icon": "globe", "text": "Currently the interface is available in english, portuguese and spanish." },
-        { "title": "Control over the process", "__icon": "file", "text": "You can choose what to do all along the process." },
-        { "title": "Control over usage", "__icon": "dash", "text": "You know at all times how many times the application has been used." }
+        {
+            "title": "Simple and straightforward interface",
+            "text": "Just drag one or more files over the screen to start the process.",
+            "__icon": "drag"
+        },
+        {
+            "title": "Available in multiple languages",
+            "text": "Currently the interface is available in english, portuguese and spanish.",
+            "__icon": "globe"
+        },
+        {
+            "title": "Control over the process",
+            "text": "You can choose what to do all along the process.",
+            "__icon": "file"
+        },
+        {
+            "title": "Control over usage",
+            "text": "You know at all times how many times the application has been used.",
+            "__icon": "dash"
+        }
     ],
     "wait": "Wait"
-
 }

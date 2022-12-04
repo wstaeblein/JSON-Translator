@@ -1,0 +1,19 @@
+Internal ID	en	es
+title	ACME Application	
+desc	This application does a lot of good things to many people	
+mainbtntext	Download	
+form.waitmsg	Please wait while we submit your form	
+form.okmsg	Form sent successfully	
+form.errmsg	An error has occurred!	
+form.placeholders.name	Name	
+form.placeholders.email	Email	
+form.placeholders.msg	Message	
+bullets.0.title	Simple and straightforward interface	
+bullets.0.text	Just drag one or more files over the screen to start the process.	
+bullets.1.title	Available in multiple languages	
+bullets.1.text	Currently the interface is available in english, portuguese and spanish.	
+bullets.2.title	Control over the process	
+bullets.2.text	You can choose what to do all along the process.	
+bullets.3.title	Control over usage	
+bullets.3.text	You know at all times how many times the application has been used.	
+wait	Wait	
